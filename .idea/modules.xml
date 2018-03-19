@@ -2,6 +2,9 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/garTenderWebTests.iml" filepath="$PROJECT_DIR$/.idea/modules/garTenderWebTests.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/garTenderWebTests_main.iml" filepath="$PROJECT_DIR$/.idea/modules/garTenderWebTests_main.iml" group="garTenderWebTests" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/garTenderWebTests_test.iml" filepath="$PROJECT_DIR$/.idea/modules/garTenderWebTests_test.iml" group="garTenderWebTests" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/sandbox.iml" filepath="$PROJECT_DIR$/.idea/modules/sandbox.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/sandbox_main.iml" filepath="$PROJECT_DIR$/.idea/modules/sandbox_main.iml" group="sandbox" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/sandbox_test.iml" filepath="$PROJECT_DIR$/.idea/modules/sandbox_test.iml" group="sandbox" />
