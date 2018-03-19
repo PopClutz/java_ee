@@ -45,6 +45,7 @@ public class FirstGarTest {
         wd.findElement(By.id("user_password")).click();
         wd.findElement(By.id("user_password")).sendKeys("3ef92200");
         wd.findElement(By.name("commit")).click();
+        wd.get("https://goo.gl/REZwP2");
         System.out.println(methodDate());
         System.out.println(dateFromWeb());
         System.out.println(theCurentDate());
@@ -87,11 +88,6 @@ public class FirstGarTest {
         return days;
     }
 
-
-
-
-
-    
     @AfterMethod
     public void tearDown() {
         wd.quit();
