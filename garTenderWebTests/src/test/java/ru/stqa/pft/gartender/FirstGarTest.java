@@ -6,16 +6,18 @@ import org.openqa.selenium.remote.BrowserType;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.Test;
-import static org.testng.Assert.*;
+import static org.hamcrest.CoreMatchers.*;
+import static org.hamcrest.MatcherAssert.assertThat;
 
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.concurrent.TimeUnit;
 import java.util.Date;
-import java.io.File;
-import org.openqa.selenium.support.ui.Select;
-import org.openqa.selenium.interactions.Actions;
+
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.*;
-import static org.openqa.selenium.OutputType.*;
 
 public class FirstGarTest {
     WebDriver wd;
@@ -36,14 +38,59 @@ public class FirstGarTest {
     }
     
     @Test
-    public void FirstGarTest() {
+    public void FirstGarTest() throws ParseException {
         wd.get("https://geesupport.gartender.ru/login");
         wd.findElement(By.id("user_login")).click();
         wd.findElement(By.id("user_login")).sendKeys("strahov");
         wd.findElement(By.id("user_password")).click();
         wd.findElement(By.id("user_password")).sendKeys("3ef92200");
         wd.findElement(By.name("commit")).click();
+        System.out.println(methodDate());
+        System.out.println(dateFromWeb());
+        System.out.println(theCurentDate());
+        datesDifference();
+        int value0=0;
+        int value1=1;
+
+        assertThat(datesDifference(),anyOf(is(value0),is(value1)));
+
     }
+
+    private char[] methodDate() {
+        String str = wd.findElement(By.xpath("//div[contains( text(),'опубликовано')]")).getText();
+        int start = 13;
+        int end = 23;
+        char [] dst = new char [end - start];
+        str.getChars(start, end, dst, 0);
+        return dst;
+    }
+
+    private Date dateFromWeb() throws ParseException {
+        SimpleDateFormat format = new SimpleDateFormat("dd.MM.yyyy");
+        java.util.Date date = format.parse(String.valueOf(methodDate()));
+        return date;
+    }
+
+    private static Date theCurentDate() {
+        Calendar calendar = Calendar.getInstance();
+        calendar.set(Calendar.HOUR_OF_DAY, 0);
+        calendar.set(Calendar.MINUTE, 0);
+        calendar.set(Calendar.SECOND, 0);
+        calendar.set(Calendar.MILLISECOND, 0);
+        calendar.add(Calendar.DAY_OF_YEAR,-1);
+        return calendar.getTime();
+    }
+
+    private int datesDifference() throws ParseException {
+        long milliseconds = dateFromWeb().getTime() - theCurentDate().getTime();
+        int days = (int)(milliseconds/(24*60*60*1000));
+        return days;
+    }
+
+
+
+
+
     
     @AfterMethod
     public void tearDown() {
